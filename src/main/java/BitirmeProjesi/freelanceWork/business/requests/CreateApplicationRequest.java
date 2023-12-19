@@ -1,5 +1,6 @@
 package BitirmeProjesi.freelanceWork.business.requests;
 
+import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -8,7 +9,10 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class CreateApplicationRequest {
-	private int id;
 	private String details;
 	private boolean situation;
+	@NotNull
+	private int jobId;
+	@NotNull
+	private int employeeId;
 }

@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class UpdateEmployerRequest {
+	private int id;
 	private String name;
 	private String country;
 	private String information;

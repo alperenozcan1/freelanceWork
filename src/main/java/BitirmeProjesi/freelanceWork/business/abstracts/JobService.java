@@ -11,7 +11,7 @@ import BitirmeProjesi.freelanceWork.business.responses.GetByNameJobResponse;
 public interface JobService {
 	List<GetAllJobsResponse> getAll(); 
 	GetByIdJobResponse getById(int id);
-	GetByNameJobResponse getByName(String name);
+	List<GetByNameJobResponse> getByName(String name);
 	public void add(CreateJobRequest createJobRequest);
 	public void update(UpdateJobRequest updateJobRequest);
 	void delete(int id);

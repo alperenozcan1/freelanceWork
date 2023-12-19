@@ -36,6 +36,7 @@ public class JobManager implements JobService {
 
 	@Override
 	public void add(CreateJobRequest createJobRequest) {
+		
 		Job job = this.modelMapperService.forRequest().map(createJobRequest, Job.class);
 		this.jobRepository.save(job);
 
@@ -66,13 +67,13 @@ public class JobManager implements JobService {
 	}
 
 	@Override
-	public GetByNameJobResponse getByName(String name) {
-		Job job=this.jobRepository.findByName(name);
-		GetByNameJobResponse response=
-				this.modelMapperService.forResponse()
-				.map(job, GetByNameJobResponse.class);
+	public List<GetByNameJobResponse> getByName(String name) {
+		List<Job> jobs=this.jobRepository.findByName(name);
+		List<GetByNameJobResponse> jobsResponse = jobs.stream()
+				.map(job -> this.modelMapperService.forResponse().map(job, GetByNameJobResponse.class))
+				.collect(Collectors.toList());
 		
-		return response;
+		return jobsResponse;
 	}
 	
 

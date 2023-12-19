@@ -8,7 +8,9 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class UpdateJobRequest {
+	private int id;
 	private String name;
 	private double price;
 	private String description;
+	private int employerId;
 }
