@@ -13,4 +13,6 @@ public class CreateEmployeeRequest {
 	private String information;
 	private int experienceYear;
 	private String abilities;
+	private String email;
+	private String password;
 }

@@ -2,6 +2,7 @@ package BitirmeProjesi.freelanceWork.webApi.controllers;
 
 import java.util.List;
 
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -19,18 +20,20 @@ import lombok.AllArgsConstructor;
 @RestController
 @RequestMapping("/api/employee")
 @AllArgsConstructor
+@CrossOrigin
 public class EmployeesController {
 	private EmployeeService employeeService;
-	@GetMapping()
+
+	@GetMapping("/getall")
 	 public List<GetAllEmployeesResponse> getAll(){
   	return employeeService.getAll();
   }
-	@PostMapping()
+	@PostMapping("/add")
 	public void add(CreateEmployeeRequest createEmployeeRequest) {
 		this.employeeService.add(createEmployeeRequest);
 	}
 	
-	@PutMapping
+	@PutMapping("/update")
 	public void update(@RequestBody UpdateEmployeeRequest updateEmployeeRequest) {
 		this.employeeService.update(updateEmployeeRequest);
 	}

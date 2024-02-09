@@ -8,5 +8,6 @@ import BitirmeProjesi.freelanceWork.entities.concretes.Job;
 
 public interface JobRepository extends JpaRepository<Job, Integer>{
 	List<Job> findByName(String name);
+	List<Job> findByEmployerId(int employerId);
 	
 }

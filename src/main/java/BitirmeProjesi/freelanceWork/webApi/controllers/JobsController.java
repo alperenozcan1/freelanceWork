@@ -2,6 +2,7 @@ package BitirmeProjesi.freelanceWork.webApi.controllers;
 
 import java.util.List;
 
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -15,37 +16,37 @@ import BitirmeProjesi.freelanceWork.business.abstracts.JobService;
 import BitirmeProjesi.freelanceWork.business.requests.CreateJobRequest;
 import BitirmeProjesi.freelanceWork.business.requests.UpdateJobRequest;
 import BitirmeProjesi.freelanceWork.business.responses.GetAllJobsResponse;
+import BitirmeProjesi.freelanceWork.business.responses.GetByEmployerIdJobsResponse;
 import BitirmeProjesi.freelanceWork.business.responses.GetByIdJobResponse;
 import BitirmeProjesi.freelanceWork.business.responses.GetByNameJobResponse;
-import io.swagger.v3.oas.annotations.parameters.RequestBody;
-import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 
 @RestController
 @RequestMapping("/api/jobs")
 @AllArgsConstructor
+@CrossOrigin
 public class JobsController {
 	private JobService jobService;
-	@GetMapping()
+	@GetMapping("/getall")
 	 public List<GetAllJobsResponse> getAll(){
     	return jobService.getAll();
     }
 	
-//	@GetMapping("/{id}")
-//    public GetByIdJobResponse getById(@PathVariable int id){
-//    	return jobService.getById(id);
-//    }
-	@GetMapping("/{name}")
-	public List<GetByNameJobResponse> getByName(@PathVariable String name) {
+	@GetMapping("/{id}")
+   public GetByIdJobResponse getById(@PathVariable int id){
+    	return jobService.getById(id);
+    }
+	@GetMapping("/getByName")
+	public List<GetByNameJobResponse> getByName(@RequestParam("name") String name) {
 		return jobService.getByName(name);
 	}
 	
-	@PostMapping()
-	public void add(@RequestBody @Valid() CreateJobRequest createJobRequest) {
+	@PostMapping("/add")
+	public void add( CreateJobRequest createJobRequest) {
 		this.jobService.add(createJobRequest);
 	}
 	
-	@PutMapping
+	@PutMapping("/update")
 	public void update( UpdateJobRequest updateJobRequest) {
 		this.jobService.update(updateJobRequest);
 	}
@@ -54,4 +55,10 @@ public class JobsController {
 	public void delete(@PathVariable int id) {
 		this.jobService.delete(id);
 	}
-}
+	@GetMapping("/getByEmployerId")
+		public List<GetByEmployerIdJobsResponse> getByEmployerId(@RequestParam("employerId")int employerId){
+		return jobService.getByEmployerId(employerId);
+	}
+		
+	}
+

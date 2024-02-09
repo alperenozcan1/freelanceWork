@@ -13,7 +13,5 @@ public class CreateJobRequest {
 	private String name;
 	private double price;
 	private String description;
-	@NotNull
 	private int employerId;
-	
 }

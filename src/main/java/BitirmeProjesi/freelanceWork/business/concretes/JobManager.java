@@ -9,6 +9,7 @@ import BitirmeProjesi.freelanceWork.business.abstracts.JobService;
 import BitirmeProjesi.freelanceWork.business.requests.CreateJobRequest;
 import BitirmeProjesi.freelanceWork.business.requests.UpdateJobRequest;
 import BitirmeProjesi.freelanceWork.business.responses.GetAllJobsResponse;
+import BitirmeProjesi.freelanceWork.business.responses.GetByEmployerIdJobsResponse;
 import BitirmeProjesi.freelanceWork.business.responses.GetByIdJobResponse;
 import BitirmeProjesi.freelanceWork.business.responses.GetByNameJobResponse;
 import BitirmeProjesi.freelanceWork.core.utilities.mappers.ModelMapperService;
@@ -75,6 +76,24 @@ public class JobManager implements JobService {
 		
 		return jobsResponse;
 	}
+
+	@Override
+	public List<GetByEmployerIdJobsResponse> getByEmployerId(int employerId) {
+		List<Job> jobs=this.jobRepository.findByEmployerId(employerId);
+		  List<GetByEmployerIdJobsResponse>
+		  jobsResponse=jobs.stream().map(job->this.modelMapperService.forResponse().map
+		  (job, GetByEmployerIdJobsResponse.class)).collect(Collectors.toList());
+		  return jobsResponse;
+	}
+
+	/*
+	 * @Override public List<GetByEmployerIdJobsResponse> getByEmployerId(int
+	 * employerId) { List<Job> jobs=this.jobRepository.findByEmployerId(employerId);
+	 * List<GetByEmployerIdJobsResponse>
+	 * jobsResponse=jobs.stream().map(job->this.modelMapperService.forResponse().map
+	 * (job, GetByEmployerIdJobsResponse.class)).collect(Collectors.toList());
+	 * return jobsResponse; }
+	 */
 	
 
 	

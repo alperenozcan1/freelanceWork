@@ -35,14 +35,17 @@ public class Employee {
 	private int experienceYear;
 	@Column(name="abilities")
 	private String abilities;
+	@Column(name="email")
+	private String email;
+	@Column(name="password")
+	private String password;
+
 	
 	@OneToOne
 	@JoinColumn(name="job_id")
 	private Job job;
 	
-	@OneToMany
-	private List<Application> application;
+	@OneToMany(mappedBy = "employee")
+	private List<Application> applications;
 	
-	
-
 }

@@ -11,4 +11,6 @@ public class CreateEmployerRequest {
 	private String name;
 	private String country;
 	private String information;
+	private String email;
+	private String password;
 }

@@ -29,6 +29,10 @@ public class Employer {
 	private String country;
 	@Column(name="information")
 	private String information;
+	@Column(name="email")
+	private String email;
+	@Column(name="password")
+	private String password;
 	
 	@OneToMany(mappedBy = "employer")
 	private List<Job> jobs;
